@@ -7,15 +7,43 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-
+    var locationManager: CLLocationManager?
+    let uuidString = "963DD255-03EA-404D-BA0B-B25AE390AD19"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let beaconIdentifier = "Kicker"
+        let beaconUUID = NSUUID(UUIDString: uuidString)
+        let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID, identifier: beaconIdentifier)
+ 
+        locationManager = CLLocationManager()
+        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
+            locationManager!.requestAlwaysAuthorization()
+        }
+        
+        locationManager!.delegate = self
+        locationManager!.pausesLocationUpdatesAutomatically = false
+        locationManager!.startMonitoringForRegion(beaconRegion)
+        locationManager!.startRangingBeaconsInRegion(beaconRegion)
+        locationManager!.startUpdatingLocation()
+        NSLog("Ranging Started")
+        
+        if(application.respondsToSelector("registerUserNotificationSettings:")) {
+            application.registerUserNotificationSettings(
+                UIUserNotificationSettings(
+                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
+                    categories: nil
+                )
+            )
+        }
+        
         return true
     }
 
@@ -44,3 +72,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+    func sendLocalNotificationWithMessage(message: String!) {
+        let localNotification:UILocalNotification = UILocalNotification()
+        localNotification.alertBody = message
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        NSLog("Kicker found!")
+        let beacon = beacons[0] as CLBeacon
+        let viewController:ViewController = window!.rootViewController as ViewController
+        viewController.browseToLeague(beacon.minor)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
+        manager.startUpdatingLocation()
+        NSLog("You entered the region")
+        sendLocalNotificationWithMessage("You are near a kicker")
+    }
+    
+    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
+        manager.stopUpdatingLocation()
+        
+        NSLog("You exited the region")
+        sendLocalNotificationWithMessage("Byebye!")
+    }
+}

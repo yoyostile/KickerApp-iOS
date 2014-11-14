@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E752793D1A166A6B007718B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E752793C1A166A6B007718B6 /* Images.xcassets */; };
 		E7CAA7F61A1647B3001A431F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAA7F51A1647B3001A431F /* AppDelegate.swift */; };
 		E7CAA7F81A1647B3001A431F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAA7F71A1647B3001A431F /* ViewController.swift */; };
 		E7CAA7FB1A1647B3001A431F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7CAA7F91A1647B3001A431F /* Main.storyboard */; };
-		E7CAA7FD1A1647B3001A431F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7CAA7FC1A1647B3001A431F /* Images.xcassets */; };
 		E7CAA8001A1647B3001A431F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7CAA7FE1A1647B3001A431F /* LaunchScreen.xib */; };
 		E7CAA80C1A1647B3001A431F /* KickerApp_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAA80B1A1647B3001A431F /* KickerApp_iOSTests.swift */; };
 /* End PBXBuildFile section */
@@ -26,12 +26,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E752793C1A166A6B007718B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../BeaconMap/BeaconMap/Images.xcassets; sourceTree = "<group>"; };
 		E7CAA7F01A1647B3001A431F /* KickerApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KickerApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CAA7F41A1647B3001A431F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7CAA7F51A1647B3001A431F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7CAA7F71A1647B3001A431F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E7CAA7FA1A1647B3001A431F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E7CAA7FC1A1647B3001A431F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E7CAA7FF1A1647B3001A431F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E7CAA8051A1647B3001A431F /* KickerApp-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KickerApp-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CAA80A1A1647B3001A431F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 				E7CAA7F51A1647B3001A431F /* AppDelegate.swift */,
 				E7CAA7F71A1647B3001A431F /* ViewController.swift */,
 				E7CAA7F91A1647B3001A431F /* Main.storyboard */,
-				E7CAA7FC1A1647B3001A431F /* Images.xcassets */,
+				E752793C1A166A6B007718B6 /* Images.xcassets */,
 				E7CAA7FE1A1647B3001A431F /* LaunchScreen.xib */,
 				E7CAA7F31A1647B3001A431F /* Supporting Files */,
 			);
@@ -161,6 +161,12 @@
 				TargetAttributes = {
 					E7CAA7EF1A1647B3001A431F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 2K757A9CMH;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					E7CAA8041A1647B3001A431F = {
 						CreatedOnToolsVersion = 6.1;
@@ -193,8 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7CAA7FB1A1647B3001A431F /* Main.storyboard in Resources */,
+				E752793D1A166A6B007718B6 /* Images.xcassets in Resources */,
 				E7CAA8001A1647B3001A431F /* LaunchScreen.xib in Resources */,
-				E7CAA7FD1A1647B3001A431F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,9 +342,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "KickerApp-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -346,9 +355,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "KickerApp-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -405,6 +417,7 @@
 				E7CAA8111A1647B3001A431F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E7CAA8121A1647B3001A431F /* Build configuration list for PBXNativeTarget "KickerApp-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +426,7 @@
 				E7CAA8141A1647B3001A431F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
